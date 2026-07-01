@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "chat-heads-figura-support",
+	"version": "${version}",
+	"name": "Chat Heads Figura Support",
+	"description": "Figuraの顔がチャットメッセージの横に出てくるようにする。",
+	"authors": [
+		"reizou_00"
+	],
+	"contact": {
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/chat-heads-figura-support/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.chat_heads_figura.ChatHeadsFiguraSupport"
+		],
+		"client": [
+			"com.chat_heads_figura.client.ChatHeadsFiguraSupportClient"
+		]
+	},
+	"mixins": [
+		"chat-heads-figura-support.mixins.json",
+		{
+			"config": "chat-heads-figura-support.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": ">=1.21.4 <1.21.6",
+		"java": ">=21",
+		"fabric-api": "*",
+		"chat_heads": "*",
+		"figura": "*"
+	}
+}
