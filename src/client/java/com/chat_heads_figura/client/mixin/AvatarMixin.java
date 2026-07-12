@@ -30,6 +30,7 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
     @Unique
     Avatar avatar = (Avatar)(Object)this;
 
+    // 既存の表示ではalpha値をいじれないのでいじれるメソッドをここで決めておく
     @Unique
     @Override
     public boolean chatHeads$renderPortrait(GuiGraphics gui, int x, int y, int size, float modelScale, boolean upsideDown, float alpha) {
