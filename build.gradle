@@ -6,6 +6,12 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
+// mod名を決めよう
+base {
+	archivesName = "chat-heads-figura-support+mc${project.minecraft_version}"
+}
+
+
 repositories {
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
