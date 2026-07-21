@@ -1,6 +1,6 @@
-package com.chat_heads_figura.client.mixin;
+package com.chat_heads_figura.mixin;
 
-import com.chat_heads_figura.client.interfaces.ChatHeadsAvatar;
+import com.chat_heads_figura.interfaces.ChatHeadsAvatar;
 import dzwdz.chat_heads.ChatHeads;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

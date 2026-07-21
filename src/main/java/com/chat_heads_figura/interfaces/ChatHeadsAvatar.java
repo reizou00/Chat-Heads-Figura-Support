@@ -1,4 +1,4 @@
-package com.chat_heads_figura.client.interfaces;
+package com.chat_heads_figura.interfaces;
 
 import net.minecraft.client.gui.GuiGraphics;
 import org.spongepowered.asm.mixin.Unique;

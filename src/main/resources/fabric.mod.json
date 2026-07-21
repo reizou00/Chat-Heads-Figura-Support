@@ -14,19 +14,9 @@
 	"icon": "assets/chat-heads-figura-support/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"com.chat_heads_figura.ChatHeadsFiguraSupport"
-		],
-		"client": [
-			"com.chat_heads_figura.client.ChatHeadsFiguraSupportClient"
-		]
 	},
 	"mixins": [
-		"chat-heads-figura-support.mixins.json",
-		{
-			"config": "chat-heads-figura-support.client.mixins.json",
-			"environment": "client"
-		}
+		"chat-heads-figura-support.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.9",

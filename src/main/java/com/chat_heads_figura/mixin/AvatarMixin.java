@@ -1,6 +1,6 @@
-package com.chat_heads_figura.client.mixin;
+package com.chat_heads_figura.mixin;
 
-import com.chat_heads_figura.client.interfaces.ChatHeadsAvatar;
+import com.chat_heads_figura.interfaces.ChatHeadsAvatar;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
