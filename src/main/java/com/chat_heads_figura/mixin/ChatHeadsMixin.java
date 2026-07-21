@@ -40,8 +40,9 @@ public class ChatHeadsMixin {
             return;
 
         Player player = Minecraft.getInstance()
-                .level
-                .getPlayerByUUID(owner.getProfile().getId());
+                .level != null ? Minecraft.getInstance()
+                                 .level
+                                 .getPlayerByUUID(owner.getProfile().getId()) : null;
 
         boolean upsideDown =
                 player != null &&
