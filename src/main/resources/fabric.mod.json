@@ -3,17 +3,25 @@
 	"id": "chat-heads-figura-support",
 	"version": "${version}",
 	"name": "Chat Heads Figura Support",
-	"description": "Figuraの顔がチャットメッセージの横に出てくるようにする。",
+	"description": "Chat Headsの顔を今使ってるFiguraアバターの顔に置き換えます。",
 	"authors": [
 		"reizou_00"
 	],
 	"contact": {
-		"sources": "https://github.com/reizou00/Chat-Heads-Figura-Support"
+		"sources": "https://github.com/reizou00/Chat-Heads-Figura-Support",
+		"issues": "https://github.com/reizou00/Chat-Heads-Figura-Support/issues"
 	},
 	"license": "MPL-2.0",
 	"icon": "assets/chat-heads-figura-support/icon.png",
 	"environment": "client",
 	"entrypoints": {
+	},
+	"custom":  {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/swJ4MHGv"
+			}
+		}
 	},
 	"mixins": [
 		"chat-heads-figura-support.mixins.json"
