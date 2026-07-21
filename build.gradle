@@ -21,12 +21,12 @@ repositories {
 }
 
 loom {
-	splitEnvironmentSourceSets()
+//	splitEnvironmentSourceSets()
 
 	mods {
 		"chat-heads-figura-support" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+//			sourceSet sourceSets.client
 		}
 	}
 
