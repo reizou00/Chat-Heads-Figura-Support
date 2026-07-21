@@ -3,6 +3,8 @@
 	"package": "com.chat_heads_figura.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"ChatHeadsMixin",
+		"AvatarMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
