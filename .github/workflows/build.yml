@@ -4,26 +4,48 @@
 # against bad commits.
 
 name: build
-on: [pull_request, push]
+on: [ pull_request, push ]
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v6
-      - name: validate gradle wrapper
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Download Dependencies
+        run: |
+          mkdir .libs
+          curl -L https://github.com/purrowler/Figura/releases/download/1.21.5-sodium-2/figura-0.1.5+1.21.5-fabric-mc-sodiumcompat.jar -o .libs/figura-0.1.5+1.21.5-fabric-mc-sodiumcompat.jar
+          curl -L https://cdn.modrinth.com/data/Wb5oqrBJ/versions/wtolRmFz/chat_heads-0.15.2-fabric-1.21.5.jar -o .libs/chat_heads-0.15.2-fabric-1.21.5.jar
+
+      - name: Validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v6
-      - name: setup jdk
+
+      - name: Setup Java
         uses: actions/setup-java@v5
         with:
-          java-version: '25'
-          distribution: 'microsoft'
-      - name: make gradle wrapper executable
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Make Gradle wrapper Executable
         run: chmod +x ./gradlew
-      - name: build
+
+      - name: Build
         run: ./gradlew build
-      - name: capture build artifacts
+
+      - name: Post Download Dependencies
+        run: rm -rf .libs/
+
+      - name: Capture build artifacts
         uses: actions/upload-artifact@v7
         with:
           name: Artifacts
