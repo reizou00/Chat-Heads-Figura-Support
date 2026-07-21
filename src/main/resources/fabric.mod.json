@@ -10,20 +10,20 @@
 	"contact": {
 		"sources": "https://github.com/reizou00/Chat-Heads-Figura-Support"
 	},
-	"license": "CC0-1.0",
+	"license": "MPL-2.0",
 	"icon": "assets/chat-heads-figura-support/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 	},
 	"mixins": [
 		"chat-heads-figura-support.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
+		"fabricloader": ">=0.16.0",
 		"minecraft": ">=1.21.5 <1.21.6",
 		"java": ">=21",
 		"fabric-api": "*",
-		"chat_heads": "*",
-		"figura": "*"
+		"chat_heads": ">=0.15.2",
+		"figura": ">=0.1.5"
 	}
 }
