@@ -47,7 +47,8 @@ public class ChatHeadsMixin {
                 player != null &&
                         LivingEntityRenderer.isEntityUpsideDown(player);
 
-        ((ChatHeadsAvatar) avatar).chatHeads$renderPortrait(
+        // 表示するデータを取得
+        boolean head = ((ChatHeadsAvatar) avatar).chatHeads$renderPortrait(
                 guiGraphics,
                 x,
                 y,
@@ -56,8 +57,11 @@ public class ChatHeadsMixin {
                 upsideDown,
                 opacity
         );
-        {
-            ci.cancel();
-        }
+
+        // 描画出来なかったら元のメソッドの動作にする。
+        if (!head) return;
+
+        // 元のメソッドはもういらへん！
+        ci.cancel();
     }
 }
