@@ -43,7 +43,7 @@ dependencies {
 
 	// Figura&chat-heads
 	modCompileOnly files(".libs/figura-0.1.5+1.21.5-fabric-mc-sodiumcompat.jar")
-	modCompileOnly files(".libs/chat_heads-0.13.18-fabric-1.21.5.jar")
+	modCompileOnly files(".libs/chat_heads-0.15.2-fabric-1.21.5.jar")
 	
 }
 

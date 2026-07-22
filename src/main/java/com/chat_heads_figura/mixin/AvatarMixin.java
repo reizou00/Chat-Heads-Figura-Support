@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2026 reizou00
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 package com.chat_heads_figura.mixin;
 
 import com.chat_heads_figura.interfaces.ChatHeadsAvatar;
@@ -18,14 +25,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-/*
- * Copyright (c) 2026 reizou00
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at https://mozilla.org/MPL/2.0/.
- */
-
 @Mixin(Avatar.class)
 public abstract class AvatarMixin implements ChatHeadsAvatar {
 
@@ -36,7 +35,7 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
     public boolean loaded;
 
     @Unique
-    Avatar avatar = (Avatar)(Object)this;
+    Avatar avatar = (Avatar) (Object) this;
 
     // 既存の表示ではalpha値をいじれないのでいじれるメソッドをここで決めておく
     @Unique
@@ -45,33 +44,41 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
         if (Configs.AVATAR_PORTRAIT.value && this.renderer != null && this.loaded) {
             PoseStack pose = gui.pose();
             pose.pushPose();
-            pose.translate(x, y, (double)0.0F);
-            pose.scale(modelScale, modelScale * (float)(upsideDown ? 1 : -1), modelScale);
+            pose.translate(x, y, (double) 0.0F);
+            pose.scale(modelScale, modelScale * (float) (upsideDown ? 1 : -1), modelScale);
             pose.mulPose(Axis.XP.rotationDegrees(180.0F));
             Vector3f pos = pose.last().pose().transformPosition(new Vector3f());
-            int x1 = (int)pos.x;
-            int y1 = (int)pos.y;
-            int x2 = (int)pos.x + size;
-            int y2 = (int)pos.y + size;
+
+            int x1 = (int) pos.x;
+            int y1 = (int) pos.y;
+            int x2 = (int) pos.x + size;
+            int y2 = (int) pos.y + size;
+
             gui.pose().pushPose();
             gui.pose().setIdentity();
             gui.enableScissor(x1, y1, x2, y2);
             gui.pose().popPose();
+
             UIHelper.paperdoll = true;
             UIHelper.dollScale = 16.0F;
-            pose.translate(0.25F, upsideDown ? (double)0.0F : (double)0.5F, (double)0.0F);
+            pose.translate(0.25F, upsideDown ? (double) 0.0F : (double) 0.5F, (double) 0.0F);
             Lighting.setupForFlatItems();
-            MultiBufferSource.BufferSource buffer = ((GuiGraphicsAccessor)gui).getBufferSource();
+            MultiBufferSource.BufferSource buffer = ((GuiGraphicsAccessor) gui).getBufferSource();
+
             int light = 15728880;
             this.renderer.allowPivotParts = false;
             this.renderer.setupRenderer(PartFilterScheme.PORTRAIT, buffer, pose, 1.0F, light, alpha, OverlayTexture.NO_OVERLAY, false, false);
             int comp = this.renderer.renderSpecialParts();
+
             boolean ret = comp > 0 || avatar.headRender(pose, buffer, light, false);
+
             buffer.endBatch();
             pose.popPose();
             gui.disableScissor();
+
             UIHelper.paperdoll = false;
             this.renderer.allowPivotParts = true;
+
             return ret;
         } else {
             return false;

@@ -3,27 +3,35 @@
 	"id": "chat-heads-figura-support",
 	"version": "${version}",
 	"name": "Chat Heads Figura Support",
-	"description": "Figuraの顔がチャットメッセージの横に出てくるようにする。",
+	"description": "Chat Headsの顔を今使ってるFiguraアバターの顔に置き換えます。",
 	"authors": [
 		"reizou_00"
 	],
 	"contact": {
-		"sources": "https://github.com/reizou00/Chat-Heads-Figura-Support"
+		"sources": "https://github.com/reizou00/Chat-Heads-Figura-Support",
+		"issues": "https://github.com/reizou00/Chat-Heads-Figura-Support/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "MPL-2.0",
 	"icon": "assets/chat-heads-figura-support/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
+	},
+	"custom":  {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/swJ4MHGv"
+			}
+		}
 	},
 	"mixins": [
 		"chat-heads-figura-support.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
+		"fabricloader": ">=0.16.0",
 		"minecraft": ">=1.21.5 <1.21.6",
 		"java": ">=21",
 		"fabric-api": "*",
-		"chat_heads": "*",
-		"figura": "*"
+		"chat_heads": ">=0.15.2",
+		"figura": ">=0.1.5"
 	}
 }
