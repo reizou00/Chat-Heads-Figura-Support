@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "chat-heads-figura-support",
+	"id": "chat_heads_figura_support",
 	"version": "${version}",
 	"name": "Chat Heads Figura Support",
-	"description": "Chat Headsの顔を今使ってるFiguraアバターの顔に置き換えます。",
+	"description": "Replaces Chat Heads' player heads with your active Figura avatar's face.",
 	"authors": [
 		"reizou_00"
 	],
@@ -15,7 +15,7 @@
 		"issues": "https://github.com/reizou00/Chat-Heads-Figura-Support/issues"
 	},
 	"license": "MPL-2.0",
-	"icon": "assets/chat-heads-figura-support/icon.png",
+	"icon": "assets/chat_heads_figura_support/icon.png",
 	"environment": "client",
 	"entrypoints": {
 	},
@@ -27,7 +27,7 @@
 		}
 	},
 	"mixins": [
-		"chat-heads-figura-support.mixins.json"
+		"chat_heads_figura_support.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",
