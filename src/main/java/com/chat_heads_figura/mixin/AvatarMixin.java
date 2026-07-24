@@ -11,12 +11,12 @@ import com.chat_heads_figura.interfaces.ChatHeadsAvatar;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import org.figuramc.figura.avatar.Avatar;
 import org.figuramc.figura.config.Configs;
-import org.figuramc.figura.mixin.gui.GuiGraphicsAccessor;
 import org.figuramc.figura.model.rendering.AvatarRenderer;
 import org.figuramc.figura.model.rendering.PartFilterScheme;
 import org.figuramc.figura.utils.ui.UIHelper;
@@ -63,7 +63,7 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
             UIHelper.dollScale = 16.0F;
             pose.translate(0.25F, upsideDown ? (double) 0.0F : (double) 0.5F, (double) 0.0F);
             Lighting.setupForFlatItems();
-            MultiBufferSource.BufferSource buffer = ((GuiGraphicsAccessor) gui).getBufferSource();
+            MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
 
             int light = 15728880;
             this.renderer.allowPivotParts = false;

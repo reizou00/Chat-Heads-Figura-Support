@@ -27,11 +27,11 @@
 		}
 	},
 	"mixins": [
-		"chat_heads_figura_support.json"
+		"chat_heads_figura_support.mixin.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",
-		"minecraft": ">=1.21.5 <1.21.6",
+		"minecraft": ">=1.21 <1.21.2",
 		"java": ">=21",
 		"fabric-api": "*",
 		"chat_heads": ">=0.15.2",
