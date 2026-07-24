@@ -27,7 +27,7 @@
 		}
 	},
 	"mixins": [
-		"chat_heads_figura_support.json"
+		"chat_heads_figura_support.mixin.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",
