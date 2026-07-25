@@ -42,6 +42,10 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
     @Override
     public boolean chatHeads$renderPortrait(GuiGraphics gui, int x, int y, int size, float modelScale, boolean upsideDown, float alpha) {
         if (Configs.AVATAR_PORTRAIT.value && this.renderer != null && this.loaded) {
+
+            // 一旦ここで描画を終わらせる、こうしないと後で切り取っちゃダメな所も切り取っちゃう
+            gui.flush();
+
             PoseStack pose = gui.pose();
             pose.pushPose();
             pose.translate(x, y, (double) 0.0F);
