@@ -42,8 +42,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	// Figura&chat-heads
-	modCompileOnly files(".libs/figura-0.1.6+1.21.1-fabric-mc.jar")
-	modCompileOnly files(".libs/chat_heads-0.15.2-fabric-1.21.jar")
+	modCompileOnly files(".libs/figura-0.1.5+1.20.4-fabric-mc.jar")
+	modCompileOnly files(".libs/chat_heads-0.15.2-fabric-1.20.4.jar")
 	
 }
 
@@ -57,7 +57,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = 17
 }
 
 java {
@@ -66,8 +66,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
