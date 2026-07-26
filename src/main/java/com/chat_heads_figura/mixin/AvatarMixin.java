@@ -40,7 +40,7 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
     // 既存の表示ではalpha値をいじれないのでいじれるメソッドをここで決めておく
     @Unique
     @Override
-    public boolean chatHeads$renderPortrait(GuiGraphics gui, int x, int y, int size, float modelScale, boolean upsideDown, float alpha) {
+    public boolean chatHeads$renderPortrait(GuiGraphics gui, int x, int y, int size, float modelScale, boolean upsideDown, float alpha, boolean drawShadow) {
         if (Configs.AVATAR_PORTRAIT.value && this.renderer != null && this.loaded) {
 
             // 一旦ここで描画を終わらせる、こうしないと後で切り取っちゃダメな所も切り取っちゃう
@@ -65,11 +65,27 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
 
             UIHelper.paperdoll = true;
             UIHelper.dollScale = 16.0F;
-            pose.translate(0.25F, upsideDown ? (double) 0.0F : (double) 0.5F, (double) 0.0F);
+
+            double translationX = 0.25F;
+            double translationY = upsideDown ? (double) 0.0F : (double) 0.5F;
+            double translationZ = 0.0F;
+
+            // 明るさを決める
+            int light = 15728880;
+
+            // 影を書く場合
+            if (drawShadow) {
+                // 近いとかぶってしまうのですこし後ろに設置。X軸を180度回転しているため、負ではなく正の値にしている。
+                translationZ = 0.1F;
+                // 暗くして影っぽく
+                light = 3932220;
+            }
+
+            pose.translate(translationX, translationY, translationZ);
+
             Lighting.setupForFlatItems();
             MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-
-            int light = 15728880;
+            
             this.renderer.allowPivotParts = false;
             this.renderer.setupRenderer(PartFilterScheme.PORTRAIT, buffer, pose, 1.0F, light, alpha, OverlayTexture.NO_OVERLAY, false, false);
             int comp = this.renderer.renderSpecialParts();
