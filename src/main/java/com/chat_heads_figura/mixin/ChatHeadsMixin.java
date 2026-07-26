@@ -32,6 +32,8 @@ public class ChatHeadsMixin {
     private static void renderFiguraHead(
             GuiGraphics guiGraphics, int x, int y, PlayerInfo owner, float opacity, boolean drawShadow, CallbackInfo ci) {
 
+        int shadowOffset = drawShadow ? -1 : 0;
+
         Avatar avatar = AvatarManager.getAvatarForPlayer(owner.getProfile().getId());
 
         if (avatar == null) return;
@@ -41,10 +43,16 @@ public class ChatHeadsMixin {
                 mc.level.getPlayerByUUID(owner.getProfile().getId()) : null;
         if (player == null) return;
 
+        // 影を描画
+        if (drawShadow) {
+            ((ChatHeadsAvatar) avatar).chatHeads$renderPortrait(
+                    guiGraphics, x + 1, y, 8, 16f, LivingEntityRenderer.isEntityUpsideDown(player), opacity, true);
+        }
+
         // 表示するデータを取得
         // 描画出来なかったら元のメソッドの動作にする。
         if (!((ChatHeadsAvatar) avatar).chatHeads$renderPortrait(
-                guiGraphics, x, y, 8, 16f, LivingEntityRenderer.isEntityUpsideDown(player), opacity)) return;
+                guiGraphics, x, y + shadowOffset, 8, 16f, LivingEntityRenderer.isEntityUpsideDown(player), opacity, false)) return;
 
         // 元のメソッドはもういらへん！
         ci.cancel();
