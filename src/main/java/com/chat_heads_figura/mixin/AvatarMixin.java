@@ -11,12 +11,12 @@ import com.chat_heads_figura.interfaces.ChatHeadsAvatar;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import org.figuramc.figura.avatar.Avatar;
 import org.figuramc.figura.config.Configs;
-import org.figuramc.figura.mixin.gui.GuiGraphicsAccessor;
 import org.figuramc.figura.model.rendering.AvatarRenderer;
 import org.figuramc.figura.model.rendering.PartFilterScheme;
 import org.figuramc.figura.utils.ui.UIHelper;
@@ -42,11 +42,15 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
     @Override
     public boolean chatHeads$renderPortrait(GuiGraphics gui, int x, int y, int size, float modelScale, boolean upsideDown, float alpha, boolean drawShadow) {
         if (Configs.AVATAR_PORTRAIT.value && this.renderer != null && this.loaded) {
+
+            // 一旦ここで描画を終わらせる、こうしないと後で切り取っちゃダメな所も切り取っちゃう
+            gui.flush();
+
             PoseStack pose = gui.pose();
             pose.pushPose();
-            pose.translate(x, y, (double) 0.0F);
-            pose.scale(modelScale, modelScale * (float) (upsideDown ? 1 : -1), modelScale);
-            pose.mulPose(Axis.XP.rotationDegrees(180.0F));
+            pose.translate(x, y, 0d);
+            pose.scale(modelScale, modelScale * (upsideDown ? 1 : -1), modelScale);
+            pose.mulPose(Axis.XP.rotationDegrees(180f));
             Vector3f pos = pose.last().pose().transformPosition(new Vector3f());
 
             int x1 = (int) pos.x;
@@ -77,8 +81,9 @@ public abstract class AvatarMixin implements ChatHeadsAvatar {
             }
 
             pose.translate(translationX, translationY, translationZ);
+
             Lighting.setupForFlatItems();
-            MultiBufferSource.BufferSource buffer = ((GuiGraphicsAccessor) gui).getBufferSource();
+            MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
 
             this.renderer.allowPivotParts = false;
             this.renderer.setupRenderer(PartFilterScheme.PORTRAIT, buffer, pose, 1.0F, light, alpha, OverlayTexture.NO_OVERLAY, false, false);
