@@ -41,6 +41,7 @@ public class ChatHeadsMixin {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.level != null ?
                 mc.level.getPlayerByUUID(owner.getProfile().getId()) : null;
+
         if (player == null) return;
 
         // 影を描画
